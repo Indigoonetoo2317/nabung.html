@@ -48,17 +48,86 @@
             color: #4b3ff4;
             font-weight: bold;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-pic::after {
+            content: '📷';
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            background: #4CAF50;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .profile-pic:hover::after {
+            opacity: 1;
         }
 
         .profile-info h2 {
             font-size: 28px;
             margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .profile-info h2:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .savings-goal {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 3px;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .savings-goal:hover {
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .balance {
             font-size: 24px;
             font-weight: 600;
             opacity: 0.95;
+        }
+
+        .edit-input {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: inherit;
+            font-weight: inherit;
+            color: #333;
+            width: 100%;
+        }
+
+        .edit-input:focus {
+            outline: none;
+            background: white;
         }
 
         .main-content {
@@ -209,14 +278,310 @@
             background: #d32f2f;
             transform: translateY(-1px);
         }
+
+        /* Avatar Modal Styles */
+        .avatar-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .avatar-selector {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .avatar-selector h3 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .avatar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .avatar-option {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            margin: 0 auto;
+        }
+
+        .avatar-option:hover {
+            transform: scale(1.1);
+            background: #e3f2fd;
+            border-color: #2196F3;
+        }
+
+        .avatar-option.selected {
+            background: #4CAF50;
+            color: white;
+            transform: scale(1.1);
+            border-color: #45a049;
+        }
+
+        .avatar-category {
+            margin-bottom: 25px;
+        }
+
+        .avatar-category h4 {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 16px;
+            text-align: center;
+            padding: 8px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .modal-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .modal-btn.save {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .modal-btn.save:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+
+        .modal-btn.cancel {
+            background: #f44336;
+            color: white;
+        }
+
+        .modal-btn.cancel:hover {
+            background: #d32f2f;
+            transform: translateY(-2px);
+        }
+
+        /* Notification Styles */
+        .celebration-notification {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .notification-card {
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            max-width: 400px;
+            width: 90%;
+            animation: slideIn 0.7s ease;
+        }
+
+        .notification-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        .celebration-text {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .celebration-amount {
+            color: #fff;
+            font-size: 28px;
+            font-weight: 900;
+            margin: 15px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .close-notification {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .close-notification:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* Fireworks Animation */
+        .firework {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: firework 1.5s ease-out infinite;
+        }
+
+        @keyframes firework {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: scale(20) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Sparkles/Gems Animation */
+        .sparkle {
+            position: absolute;
+            font-size: 20px;
+            animation: sparkle 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                transform: scale(0.5) rotate(0deg);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.2) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: scale(0.5) translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: absolute;
+            color: #ff6b9d;
+            font-size: 16px;
+            animation: floatHeart 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) scale(0.8);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <div class="profile-pic">N</div>
+            <div class="profile-pic" id="profilePic" onclick="openAvatarSelector()">N</div>
             <div class="profile-info">
-                <h2>Nauval Antonio Virgo M.R</h2>
+                <h2 id="profileName" onclick="editName()">Nauval Antonio Virgo M.R</h2>
+                <div id="savingsGoal" class="savings-goal" onclick="editGoal()">💰 Tabungan untuk: Beli Laptop Gaming</div>
                 <div class="balance">
                     Saldo: <span class="currency">Rp</span> <span id="currentBalance">0</span>
                 </div>
@@ -250,33 +615,249 @@
         </div>
     </div>
 
+    <!-- Avatar Modal -->
+    <div id="avatarModal" class="avatar-modal">
+        <div class="avatar-selector">
+            <h3>🎨 Pilih Avatar Anda</h3>
+            
+            <div class="avatar-category">
+                <h4>👤 Klasik</h4>
+                <div class="avatar-grid">
+                    <div class="avatar-option" data-avatar="👤">👤</div>
+                    <div class="avatar-option" data-avatar="👨">👨</div>
+                    <div class="avatar-option" data-avatar="👩">👩</div>
+                    <div class="avatar-option" data-avatar="🧑">🧑</div>
+                    <div class="avatar-option" data-avatar="👦">👦</div>
+                    <div class="avatar-option" data-avatar="👧">👧</div>
+                </div>
+            </div>
+
+            <div class="avatar-category">
+                <h4>🎯 Profesi</h4>
+                <div class="avatar-grid">
+                    <div class="avatar-option" data-avatar="👨‍💻">👨‍💻</div>
+                    <div class="avatar-option" data-avatar="👩‍💻">👩‍💻</div>
+                    <div class="avatar-option" data-avatar="👨‍🎓">👨‍🎓</div>
+                    <div class="avatar-option" data-avatar="👩‍🎓">👩‍🎓</div>
+                    <div class="avatar-option" data-avatar="👨‍💼">👨‍💼</div>
+                    <div class="avatar-option" data-avatar="👩‍💼">👩‍💼</div>
+                </div>
+            </div>
+
+            <div class="avatar-category">
+                <h4>🎭 Karakter</h4>
+                <div class="avatar-grid">
+                    <div class="avatar-option" data-avatar="🤓">🤓</div>
+                    <div class="avatar-option" data-avatar="😎">😎</div>
+                    <div class="avatar-option" data-avatar="🥳">🥳</div>
+                    <div class="avatar-option" data-avatar="🤠">🤠</div>
+                    <div class="avatar-option" data-avatar="🥸">🥸</div>
+                    <div class="avatar-option" data-avatar="🤩">🤩</div>
+                </div>
+            </div>
+
+            <div class="avatar-category">
+                <h4>🦸 Super</h4>
+                <div class="avatar-grid">
+                    <div class="avatar-option" data-avatar="🦸‍♂️">🦸‍♂️</div>
+                    <div class="avatar-option" data-avatar="🦸‍♀️">🦸‍♀️</div>
+                    <div class="avatar-option" data-avatar="🧙‍♂️">🧙‍♂️</div>
+                    <div class="avatar-option" data-avatar="🧙‍♀️">🧙‍♀️</div>
+                    <div class="avatar-option" data-avatar="🤴">🤴</div>
+                    <div class="avatar-option" data-avatar="👸">👸</div>
+                </div>
+            </div>
+
+            <div class="avatar-category">
+                <h4>🌟 Spesial</h4>
+                <div class="avatar-grid">
+                    <div class="avatar-option" data-avatar="🎯">🎯</div>
+                    <div class="avatar-option" data-avatar="💎">💎</div>
+                    <div class="avatar-option" data-avatar="🏆">🏆</div>
+                    <div class="avatar-option" data-avatar="⭐">⭐</div>
+                    <div class="avatar-option" data-avatar="🔥">🔥</div>
+                    <div class="avatar-option" data-avatar="💫">💫</div>
+                </div>
+            </div>
+
+            <div class="modal-buttons">
+                <button class="modal-btn save" onclick="saveAvatar()">Simpan</button>
+                <button class="modal-btn cancel" onclick="closeAvatarSelector()">Batal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Celebration Notification -->
+    <div id="celebrationNotification" class="celebration-notification">
+        <div class="notification-card">
+            <div class="celebration-text">🎉 Selamat! Kamu Berhasil Menabung Hari Ini! 🎉</div>
+            <div class="celebration-amount" id="celebrationAmount">+Rp 0</div>
+            <div style="font-size: 18px; color: white; margin: 10px 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">
+                💎 Terus semangat menabung! 💎
+            </div>
+            <button class="close-notification" onclick="closeCelebration()">Lanjutkan</button>
+        </div>
+    </div>
+
     <script>
         let currentBalance = 0;
         let savingsHistory = [];
+        let profileName = "Nauval Antonio Virgo M.R";
+        let savingsGoal = "Beli Laptop Gaming";
+        let selectedAvatar = "N";
+        let tempSelectedAvatar = "";
 
-        // Fungsi untuk menyimpan data ke localStorage
         function saveToStorage() {
-            localStorage.setItem('savingsBalance', currentBalance.toString());
-            localStorage.setItem('savingsHistory', JSON.stringify(savingsHistory));
+            const data = {
+                balance: currentBalance,
+                history: savingsHistory,
+                name: profileName,
+                goal: savingsGoal,
+                avatar: selectedAvatar
+            };
+            // Store in memory since localStorage is not available
+            window.savingsData = data;
         }
 
-        // Fungsi untuk memuat data dari localStorage
         function loadFromStorage() {
-            const savedBalance = localStorage.getItem('savingsBalance');
-            const savedHistory = localStorage.getItem('savingsHistory');
-            
-            if (savedBalance) {
-                currentBalance = parseFloat(savedBalance);
+            if (window.savingsData) {
+                const data = window.savingsData;
+                currentBalance = data.balance || 0;
+                savingsHistory = data.history || [];
+                profileName = data.name || "Nauval Antonio Virgo M.R";
+                savingsGoal = data.goal || "Beli Laptop Gaming";
+                selectedAvatar = data.avatar || "N";
+                
+                // Update display
+                document.getElementById('profileName').textContent = profileName;
+                document.getElementById('savingsGoal').innerHTML = `💰 Tabungan untuk: ${savingsGoal}`;
+                document.getElementById('profilePic').textContent = selectedAvatar;
             }
+        }
+
+        function openAvatarSelector() {
+            document.getElementById('avatarModal').style.display = 'flex';
+            tempSelectedAvatar = selectedAvatar;
             
-            if (savedHistory) {
-                try {
-                    savingsHistory = JSON.parse(savedHistory);
-                } catch (e) {
-                    console.log('Error loading history:', e);
-                    savingsHistory = [];
+            // Highlight current avatar
+            document.querySelectorAll('.avatar-option').forEach(option => {
+                option.classList.remove('selected');
+                if (option.dataset.avatar === selectedAvatar) {
+                    option.classList.add('selected');
+                }
+            });
+        }
+
+        function closeAvatarSelector() {
+            document.getElementById('avatarModal').style.display = 'none';
+            tempSelectedAvatar = "";
+        }
+
+        function saveAvatar() {
+            if (tempSelectedAvatar) {
+                selectedAvatar = tempSelectedAvatar;
+                document.getElementById('profilePic').textContent = selectedAvatar;
+                saveToStorage();
+                
+                // Add bounce animation
+                const profilePic = document.getElementById('profilePic');
+                profilePic.style.animation = 'bounce 0.6s ease';
+                setTimeout(() => {
+                    profilePic.style.animation = '';
+                }, 600);
+            }
+            closeAvatarSelector();
+        }
+
+        // Avatar selection handler
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('avatar-option')) {
+                // Remove selection from all options
+                document.querySelectorAll('.avatar-option').forEach(option => {
+                    option.classList.remove('selected');
+                });
+                
+                // Select clicked option
+                e.target.classList.add('selected');
+                tempSelectedAvatar = e.target.dataset.avatar;
+            }
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('avatarModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAvatarSelector();
+            }
+        });
+
+        function editName() {
+            const nameElement = document.getElementById('profileName');
+            const currentName = nameElement.textContent;
+            
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.value = currentName;
+            input.className = 'edit-input';
+            input.style.fontSize = '28px';
+            input.style.fontWeight = 'bold';
+            
+            nameElement.innerHTML = '';
+            nameElement.appendChild(input);
+            input.focus();
+            input.select();
+            
+            function saveName() {
+                const newName = input.value.trim();
+                if (newName) {
+                    profileName = newName;
+                    nameElement.textContent = profileName;
+                    saveToStorage();
+                } else {
+                    nameElement.textContent = currentName;
                 }
             }
+            
+            input.addEventListener('blur', saveName);
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    saveName();
+                }
+            });
+        }
+
+        function editGoal() {
+            const goalElement = document.getElementById('savingsGoal');
+            const currentGoal = savingsGoal;
+            
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.value = currentGoal;
+            input.className = 'edit-input';
+            input.style.fontSize = '16px';
+            input.placeholder = 'Masukkan tujuan tabungan...';
+            
+            goalElement.innerHTML = '';
+            goalElement.appendChild(input);
+            input.focus();
+            input.select();
+            
+            function saveGoal() {
+                const newGoal = input.value.trim();
+                if (newGoal) {
+                    savingsGoal = newGoal;
+                    goalElement.innerHTML = `💰 Tabungan untuk: ${savingsGoal}`;
+                    saveToStorage();
+                } else {
+                    goalElement.innerHTML = `💰 Tabungan untuk: ${currentGoal}`;
+                }
+            }
+            
+            input.addEventListener('blur', saveGoal);
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    saveGoal();
+                }
+            });
         }
 
         function formatCurrency(amount) {
@@ -285,6 +866,121 @@
 
         function updateBalance() {
             document.getElementById('currentBalance').textContent = formatCurrency(currentBalance);
+        }
+
+        function createFireworks() {
+            const notification = document.getElementById('celebrationNotification');
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#f0932b', '#eb4d4b', '#6c5ce7'];
+            
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const firework = document.createElement('div');
+                    firework.className = 'firework';
+                    firework.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    firework.style.left = Math.random() * 100 + '%';
+                    firework.style.top = Math.random() * 100 + '%';
+                    firework.style.animationDelay = Math.random() * 0.5 + 's';
+                    
+                    notification.appendChild(firework);
+                    
+                    setTimeout(() => {
+                        if (firework.parentNode) {
+                            firework.parentNode.removeChild(firework);
+                        }
+                    }, 1500);
+                }, i * 100);
+            }
+        }
+
+        function createSparkles() {
+            const notification = document.getElementById('celebrationNotification');
+            const gems = ['💎', '💍', '👑', '⭐', '✨', '🌟', '💫'];
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    sparkle.textContent = gems[Math.floor(Math.random() * gems.length)];
+                    sparkle.style.left = Math.random() * 90 + '%';
+                    sparkle.style.top = Math.random() * 90 + '%';
+                    sparkle.style.animationDelay = Math.random() * 1 + 's';
+                    sparkle.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                    
+                    notification.appendChild(sparkle);
+                    
+                    setTimeout(() => {
+                        if (sparkle.parentNode) {
+                            sparkle.parentNode.removeChild(sparkle);
+                        }
+                    }, 3000);
+                }, i * 50);
+            }
+        }
+
+        function createFloatingHearts() {
+            const notification = document.getElementById('celebrationNotification');
+            const hearts = ['💖', '💝', '🎁', '🏆', '🥇'];
+            
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.left = Math.random() * 80 + 10 + '%';
+                    heart.style.bottom = '0px';
+                    heart.style.animationDelay = Math.random() * 1 + 's';
+                    
+                    notification.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        if (heart.parentNode) {
+                            heart.parentNode.removeChild(heart);
+                        }
+                    }, 3000);
+                }, i * 200);
+            }
+        }
+
+        function showCelebration(amount) {
+            const notification = document.getElementById('celebrationNotification');
+            const celebrationAmount = document.getElementById('celebrationAmount');
+            
+            celebrationAmount.textContent = `+Rp ${formatCurrency(amount)}`;
+            notification.style.display = 'flex';
+            
+            // Start all animations
+            createFireworks();
+            createSparkles();
+            createFloatingHearts();
+            
+            // Continue creating effects periodically
+            const effectInterval = setInterval(() => {
+                createFireworks();
+                createSparkles();
+            }, 2000);
+            
+            // Store interval ID to clear later
+            notification.effectInterval = effectInterval;
+        }
+
+        function closeCelebration() {
+            const notification = document.getElementById('celebrationNotification');
+            
+            // Clear the effect interval
+            if (notification.effectInterval) {
+                clearInterval(notification.effectInterval);
+            }
+            
+            // Fade out animation
+            notification.style.animation = 'fadeOut 0.5s ease';
+            setTimeout(() => {
+                notification.style.display = 'none';
+                notification.style.animation = '';
+                
+                // Clean up any remaining effect elements
+                const effects = notification.querySelectorAll('.firework, .sparkle, .heart');
+                effects.forEach(effect => effect.remove());
+            }, 500);
         }
 
         function addSavings() {
@@ -324,7 +1020,7 @@
             savingsHistory.unshift(historyItem);
             updateHistoryList();
 
-            // Simpan ke localStorage
+            // Save to storage
             saveToStorage();
 
             // Reset input
@@ -336,6 +1032,11 @@
             setTimeout(() => {
                 balanceElement.parentElement.classList.remove('success-animation');
             }, 600);
+
+            // Show celebration notification
+            setTimeout(() => {
+                showCelebration(amount);
+            }, 700);
         }
 
         function updateHistoryList() {
@@ -361,15 +1062,22 @@
             historyList.innerHTML = historyHTML;
         }
 
-        // Fungsi untuk reset/hapus semua data
         function resetData() {
             if (confirm('Apakah Anda yakin ingin menghapus semua data tabungan?')) {
                 currentBalance = 0;
                 savingsHistory = [];
-                localStorage.removeItem('savingsBalance');
-                localStorage.removeItem('savingsHistory');
+                profileName = "Nauval Antonio Virgo M.R";
+                savingsGoal = "Beli Laptop Gaming";
+                selectedAvatar = "N";
+                
+                // Update display
+                document.getElementById('profileName').textContent = profileName;
+                document.getElementById('savingsGoal').innerHTML = `💰 Tabungan untuk: ${savingsGoal}`;
+                document.getElementById('profilePic').textContent = selectedAvatar;
+                
                 updateBalance();
                 updateHistoryList();
+                saveToStorage();
                 alert('Data berhasil dihapus!');
             }
         }
@@ -381,7 +1089,26 @@
             }
         });
 
-        // Inisialisasi: muat data saat halaman dibuka
+        // Close celebration when clicking outside
+        document.getElementById('celebrationNotification').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCelebration();
+            }
+        });
+
+        // Keyboard support for avatar modal
+        document.addEventListener('keydown', function(e) {
+            const avatarModal = document.getElementById('avatarModal');
+            if (avatarModal.style.display === 'flex') {
+                if (e.key === 'Escape') {
+                    closeAvatarSelector();
+                } else if (e.key === 'Enter' && tempSelectedAvatar) {
+                    saveAvatar();
+                }
+            }
+        });
+
+        // Inisialisasi: load data saat halaman dibuka
         window.addEventListener('load', function() {
             loadFromStorage();
             updateBalance();
